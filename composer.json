@@ -1,0 +1,18 @@
+{
+    "name": "tirta/testable",
+    "description": "Test management tool",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tirta Keniten",
+            "email": "keniten.tirta@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Testable\\": "src/"
+        }
+    },
+}
