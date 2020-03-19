@@ -3,6 +3,7 @@
 namespace Testable;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Test extends Model
 {
@@ -16,4 +17,9 @@ class Test extends Model
     ];
 
     protected $table = 'projects';
+
+    public function project ()
+    {
+        return $this->belongsTo(Project::class);
+    }
 }
