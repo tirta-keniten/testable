@@ -23,6 +23,7 @@ class CreateTestsTable extends Migration
             $table->text('initial_location')->nullable();
             $table->text('prerequiresite')->nullable();
             $table->boolean('status');
+            $table->text('comment')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
