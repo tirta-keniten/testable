@@ -12,14 +12,24 @@ class Test extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'name',
-        'description'
+        'project_id',
+        'title',
+        'code',
+        'tester',
+        'date_time',
+        'initial_location',
+        'prerequiresite',
+        'status',
+        'comment',
     ];
-
-    protected $table = 'projects';
 
     public function project ()
     {
         return $this->belongsTo(Project::class);
+    }
+
+    public function scenarios ()
+    {
+        return $this->hasMany(TestScenario::class);
     }
 }
