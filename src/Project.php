@@ -16,5 +16,8 @@ class Project extends Model
         'description'
     ];
 
-    protected $table = 'projects';
+    public function tests ()
+    {
+        return $this->hasMany(Test::class);
+    }
 }
