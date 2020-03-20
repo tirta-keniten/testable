@@ -17,3 +17,6 @@ Route::prefix('api/')
             ]);
 
     });
+
+Route::get('/{any?}', 'TestableController')->where('any', '.*')
+    ->name('main');
