@@ -9,7 +9,7 @@ require('./bootstrap');
 import Vue from 'vue'
 import store from './stores/index'
 import VeeValidate, { Validator } from 'vee-validate'
-import Router from './plugins/router'
+import router from './plugins/router'
 
 /**
  * The following block of code may be used to automatically register your
@@ -23,6 +23,7 @@ import Router from './plugins/router'
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('Testable', require('./components/Testable.vue').default);
+Vue.component('ProjectForm', require('./components/ProjectForm.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -33,5 +34,5 @@ Vue.component('Testable', require('./components/Testable.vue').default);
 const vueTestable = new Vue({
     el: '#vue-testable',
     store,
-    Router
+    router
 });
