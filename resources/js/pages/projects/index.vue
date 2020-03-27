@@ -24,7 +24,7 @@
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                <router-link :to="{ name: 'testable.test.create' }">Test This Project</router-link>
+                                <router-link :to="{ name: 'testable.tests.create' }">Test This Project</router-link>
                             </li>
                             <!-- li class="list-group-item">
                                 Edit Project

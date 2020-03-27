@@ -11,6 +11,8 @@ import store from './stores/index'
 import VeeValidate, { Validator } from 'vee-validate'
 import router from './plugins/router'
 
+import './filters/nl2br'
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -24,6 +26,8 @@ import router from './plugins/router'
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('Testable', require('./components/Testable.vue').default);
 Vue.component('ProjectForm', require('./components/ProjectForm.vue').default);
+Vue.component('TestForm', require('./components/TestForm.vue').default);
+Vue.component('ScenarioForm', require('./components/ScenarioForm.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

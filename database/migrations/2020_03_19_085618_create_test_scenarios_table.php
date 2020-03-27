@@ -15,12 +15,12 @@ class CreateTestScenariosTable extends Migration
     {
         Schema::create('test_scenarios', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('test_id');
             $table->integer('sequence');
             $table->text('input');
             $table->text('expected');
             $table->text('output')->nullable();
             $table->boolean('status')->nullable();
-            $table->text('attachment')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

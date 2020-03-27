@@ -5,7 +5,7 @@ import Vue from 'vue'
 import Index from './../pages/index.vue'
 import ProjectIndex from './../pages/projects/index.vue'
 import ProjectCreate from './../pages/projects/create.vue'
-import TestCreate from './../pages/test/create.vue'
+import TestCreate from './../pages/tests/create.vue'
 
 Vue.use(VueRouter)
 
@@ -26,8 +26,8 @@ const routes = [
         component: ProjectCreate,
     },
     {
-        path: '/testable/test/create',
-        name: 'testable.test.create',
+        path: '/testable/tests/create',
+        name: 'testable.tests.create',
         component: TestCreate,
     },
 ]
