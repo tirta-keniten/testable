@@ -12,6 +12,7 @@ import VeeValidate, { Validator } from 'vee-validate'
 import router from './plugins/router'
 
 import './filters/nl2br'
+import './plugins/uuid'
 
 /**
  * The following block of code may be used to automatically register your

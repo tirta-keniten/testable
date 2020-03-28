@@ -28,22 +28,40 @@
 
 <script>
 export default {
+    props: {
+        editData: {
+            type: Object,
+            default: () => { return {} }
+        }
+    },
+
     data () {
         return {
-            scenario: {
-                sequence: '',
-                input: '',
-                expected: '',
-                output: '',
-                status: null,
-            },
-            scenarios: []
+            scenario: {},
         }
     },
 
     methods: {
         formSubmitHandler () {
+            if (this.scenario.id == '') this.scenario.id = this.$uuid()
             this.$emit('save', this.scenario)
+        }
+    },
+
+    watch: {
+        editData (data) {
+            if ('id' in data) {
+                this.scenario = data
+            } else {
+                this.scenario = {
+                    id: '',
+                    sequence: 0,
+                    input: '',
+                    expected: '',
+                    output: '',
+                    status: null,
+                }
+            }
         }
     }
 }

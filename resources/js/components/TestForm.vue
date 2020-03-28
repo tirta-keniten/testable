@@ -28,11 +28,11 @@
 
             <p>
                 <a href="javascript:;"
-                    @click.prevent="showModalScenarioForm"
+                    @click.prevent="modalScenarioFormCreate"
                     class="btn btn-primary">Add Scenario</a>
             </p>
 
-            <table v-if="scenarios.length > 0" class="table">
+            <table v-if="scenarios.length > 0" class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>Input</th>
@@ -42,7 +42,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(scenario, key) in scenarios" :key="key">
+                    <tr v-for="(scenario, key) in scenarios"
+                        :key="scenario.id"
+                        @click="modalScenarioFormEdit(scenario)">
                         <td v-html="$nl2br(scenario.input)" />
                         <td v-html="$nl2br(scenario.expected)" />
                         <td v-html="$nl2br(scenario.output)" />
@@ -68,10 +70,14 @@
         </form>
 
         <div class="modal" tabindex="-1" role="dialog" ref="modalScenarioForm">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <ScenarioForm @save="scenarioFormHandler"/>
+                        <ScenarioForm
+                            @save="scenarioFormHandler"
+                            :edit-data="scenario_edit"
+                            v-if="show_scenario"
+                            />
                     </div>
                 </div>
             </div>
@@ -96,7 +102,10 @@ export default {
             },
             scenarios: [
 
-            ]
+            ],
+            scenario_edit: {},
+            show_scenario: true,
+            modalEl: null
         }
     },
 
@@ -105,16 +114,53 @@ export default {
 
         },
 
-        showModalScenarioForm () {
-            $(this.$refs.modalScenarioForm).modal('show')
+        modalInit () {
+            const modalEl = this.$refs.modalScenarioForm
+            $(modalEl).on('show.bs.modal', () => {
+                this.show_scenario = true
+            })
+            $(modalEl).on('hide.bs.modal', () => {
+                this.show_scenario = false
+            })
+        },
+
+        modalScenarioFormCreate () {
+            this.scenario_edit = {}
+            const modalEl = this.$refs.modalScenarioForm
+            $(modalEl).modal('show')
+        },
+
+        modalScenarioFormEdit (scenario) {
+            this.scenario_edit = scenario
+            const modalEl = this.$refs.modalScenarioForm
+            $(modalEl).modal('show')
         },
 
         scenarioFormHandler (scenarioData) {
-            this.scenarios = [
-                ... this.scenarios,
-                scenarioData
-            ]
+            const scIndex = _.findIndex(this.scenarios, (item) => {
+                return item.id === scenarioData.id
+            })
+
+            if (scIndex === -1) {
+                if (scenarioData.sequence === 0) scenarioData.sequence = this.scenarios.length
+                this.scenarios = [
+                    ... this.scenarios,
+                    scenarioData
+                ]
+            } else {
+                this.scenarios[scIndex] = scenarioData
+            }
         }
+    },
+
+    created () {
+        this.modalInit()
     }
 }
 </script>
+
+<style scoped lang="scss">
+.table-hover tr {
+    cursor: pointer;
+}
+</style>
